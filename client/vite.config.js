@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/ws': {
-        target: 'http://localhost:3001',
+        target: 'https://retroboard-0gyt.onrender.com',
         ws: true,
         changeOrigin: true,
       },
