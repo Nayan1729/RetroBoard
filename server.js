@@ -1,12 +1,21 @@
 const express = require("express");
 const http = require("http");
 const path = require("path");
+const cors = require("cors");
 const { WebSocketServer } = require("ws");
 const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
+
+app.use(cors({
+  origin: [
+    "https://retroboard-frontend.onrender.com",
+    "http://localhost:5173",
+  ],
+  methods: ["GET", "POST"],
+}));
 
 app.use(express.static(path.join(__dirname, "client", "dist")));
 

@@ -4,6 +4,9 @@ function getWsUrl() {
     if (import.meta.env.DEV) {
         return "ws://localhost:3001";
     }
+    if (import.meta.env.VITE_WS_URL) {
+        return import.meta.env.VITE_WS_URL;
+    }
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     return `${protocol}//${window.location.host}`;
 }
