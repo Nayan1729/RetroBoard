@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-surface: #1a1a2e;
+  --color-surface-light: #25253e;
+  --color-surface-card: #2d2d4a;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+  --color-accent: #6c63ff;
+  --color-accent-hover: #5a52e0;
+  --color-went-well: #10b981;
+  --color-improve: #f59e0b;
+  --color-action: #3b82f6;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-in {
+  animation: card-in 0.25s ease-out forwards;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  header button,
+  header span,
+  .animate-pulse-dot {
+    display: none !important;
+  }
+
+  header h1 {
+    color: #1a1a1a !important;
+  }
+
+  header {
+    background: transparent !important;
+    border-bottom: 2px solid #e0e0e0 !important;
+    backdrop-filter: none !important;
+  }
+
+  main {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    padding: 12px !important;
+  }
+
+  main>div {
+    background: #f8f8f8 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    backdrop-filter: none !important;
+    overflow: visible !important;
+    max-height: none !important;
+    break-inside: avoid;
+  }
+
+  main>div>div:last-child {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  main>div>div>div {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    color: #1a1a1a !important;
+    break-inside: avoid;
+  }
+
+  main>div>div>div p {
+    color: #1a1a1a !important;
+  }
+
+  main>div>div:first-child span:first-child {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  main>div>div:first-child h2 {
+    color: #1a1a1a !important;
+  }
+
+  main>div>div>button {
+    display: none !important;
+  }
+
+  main>div>div>div>div:last-child {
+    display: none !important;
+  }
+}
